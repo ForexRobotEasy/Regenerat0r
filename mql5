@@ -1,0 +1,115 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                                   Regenerat0r.mq5 |
+//|                      Copyright 2021, Forex Robot Easy Team        |
+//|                                              forexroboteasy.com   |
+//+------------------------------------------------------------------+
+#property copyright 'Forex Robot Easy Team'
+#property link      'forexroboteasy.com'
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//+------------------------------------------------------------------+
+#include <Trade\Trade.mqh>
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+   // Implement decision tree algorithm
+   double riskRewardRatio = AssessRiskRewardRatio();
+   if (riskRewardRatio >= 2)
+   {
+      // Evaluate trading opportunities using financial metrics
+      double rExpectancy = CalculateRExpectancy();
+      double sharpeRatio = CalculateSharpeRatio();
+      double medianVolatility = CalculateMedianVolatility();
+
+      // Check if trading opportunities meet requirements
+      if (rExpectancy > 0 && sharpeRatio > 1 && medianVolatility < 0.5)
+      {
+         // Implement low-risk automated trading system
+         if (IsMarketConditionVolatile())
+         {
+            // Apply risk management techniques
+            double maxRiskPercentage = 0.01; // Maximum risk allowed in percentage
+            double maxLoss = AccountBalance() * maxRiskPercentage;
+
+            // Execute trade
+            if (OrderSend(Symbol(), OP_BUY, 1.0, Ask, 0, Ask - StopLevel(), Ask + TakeProfit(), 'Buy', 0, 0, Green))
+            {
+               // Trade executed successfully
+               Print('Buy order executed');
+            }
+            else
+            {
+               // Error handling for trade execution
+               Print('Error executing buy order: ', GetLastError());
+            }
+         }
+      }
+   }
+}
+
+//+------------------------------------------------------------------+
+//| Function to assess risk/reward ratio                               |
+//+------------------------------------------------------------------+
+double AssessRiskRewardRatio()
+{
+   double risk = 100; // Example value for risk
+   double reward = 200; // Example value for reward
+
+   return reward / risk;
+}
+
+//+------------------------------------------------------------------+
+//| Function to calculate R-Expectancy                                |
+//+------------------------------------------------------------------+
+double CalculateRExpectancy()
+{
+   double rExpectancy = 1.5; // Example value for R-Expectancy
+
+   return rExpectancy;
+}
+
+//+------------------------------------------------------------------+
+//| Function to calculate Sharpe Ratio                                |
+//+------------------------------------------------------------------+
+double CalculateSharpeRatio()
+{
+   double sharpeRatio = 2.0; // Example value for Sharpe Ratio
+
+   return sharpeRatio;
+}
+
+//+------------------------------------------------------------------+
+//| Function to calculate median volatility                           |
+//+------------------------------------------------------------------+
+double CalculateMedianVolatility()
+{
+   double medianVolatility = 0.3; // Example value for median volatility
+
+   return medianVolatility;
+}
+
+//+------------------------------------------------------------------+
+//| Function to check if market condition is volatile                 |
+//+------------------------------------------------------------------+
+bool IsMarketConditionVolatile()
+{
+   double volatilityThreshold = 0.5; // Example threshold for volatility
+   double currentVolatility = CalculateVolatility();
+
+   return currentVolatility > volatilityThreshold;
+}
+
+//+------------------------------------------------------------------+
+//| Function to calculate volatility                                  |
+//+------------------------------------------------------------------+
+double CalculateVolatility()
+{
+   double volatility = 0.6; // Example value for volatility
+
+   return volatility;
+}
